@@ -1,57 +1,80 @@
-'use strict';
+"use strict";
 
 console.log('App.js is running.');
 
-//JSX-      JS XML 
-var template = React.createElement(
-    'div',
+var appObject = {
+    title: "Indecision App.",
+    subtitle: "This is some info",
+    options: ['One', 'Two']
+    //JSX-      JS XML 
+};var template = React.createElement(
+    "div",
     null,
     React.createElement(
-        'h1',
+        "h1",
         null,
-        'This was changed again.'
+        appObject.title
     ),
     React.createElement(
-        'p',
+        "p",
         null,
-        'This is some info'
+        appObject.subtitle && appObject.subtitle
     ),
+    React.createElement("p", null),
     React.createElement(
-        'ol',
+        "ol",
         null,
         React.createElement(
-            'li',
+            "li",
             null,
-            'Item One'
+            "Item One"
         ),
         React.createElement(
-            'li',
+            "li",
             null,
-            'Item Two'
+            "Item Two"
         )
     )
 );
 
+function avalableOptions(options) {}
+
+var user = {
+    userName: "Nikola Ninov",
+    age: 29,
+    userLocation: "Panaguyrishte,Bul"
+    // var userName = "Nikola Ninov";
+    // var age = 29;
+    // var userLocation = "Panaguyrishte,Bul";
+
+};function getLocation(location) {
+    if (location) {
+        return React.createElement(
+            "p",
+            null,
+            "Location: ",
+            location
+        );
+    }
+}
+
 var templateTwo = React.createElement(
-    'div',
+    "div",
     null,
     React.createElement(
-        'h1',
+        "h1",
         null,
-        'Nikola Ninov'
+        user.userName ? user.userName : 'Anonymous'
     ),
-    React.createElement(
-        'p',
+    user.age && user.age >= 18 && React.createElement(
+        "p",
         null,
-        'Age: 29'
+        "Age: ",
+        user.age
     ),
-    React.createElement(
-        'p',
-        null,
-        'Location: Panaguyrishte,Bul'
-    )
+    getLocation(user.userLocation)
 );
 
 var appRoot = document.getElementById('app');
 
-ReactDOM.render(templateTwo, appRoot);
+ReactDOM.render(template, appRoot);
