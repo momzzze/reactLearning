@@ -1,8 +1,10 @@
 const http = require('http');
+const fs = require('fs/promises');
 const port = 5000;
-const homePage = require("./views/home");
-const siteCss = require("./styles/site");
-const addCat = require("./views/addCat");
+const querystring = require('querystring');
+
+
+
 const cats = require("./cats.json");
 
 
@@ -21,26 +23,42 @@ const catTemplate = (cat) => `
 
 
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
+    let [pathName, qs] = req.url.split('?');
+    let params = querystring.parse(qs);
+
     res.writeHead(200, {
         'Content-Type': 'text/html'
     })
 
     if (req.url == '/styles/site.css') {
-        console.log('get css');
+
         res.writeHead(200, {
             'Content-Type': 'text/css'
         })
+        let siteCss = await fs.readFile('./styles/site.css', 'utf-8');
+
         res.write(siteCss);
+
     } else if (req.url == '/cats/add-cat') {
-        res.write(addCat);
+        let addCatPage = await fs.readFile('./views/addCat.html', 'utf-8');
+        res.write(addCatPage);
+
     } else {
+        let homePage = await fs.readFile('./views/home.html', 'utf-8');
 
-        const homePageResult = homePage.replace('{{cats}}', cats.map(x => catTemplate(x)).join(''));
+        let catsResult = await fs.readFile('./cats.json');
+        let cats = JSON.parse(catsResult);
+
+        const catsPageResult = cats
+            .filter(x => params.name.toLowerCase() ? x.name.startsWith(params.name.toLowerCase()) : true)
+            .map(x => catTemplate(x)).join('');
+
+        const homePageResult = homePage.replace('{{cats}}', catsPageResult);
         res.write(homePageResult);
+
+
     }
-
-
     res.end();
 
 });
