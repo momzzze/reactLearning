@@ -1,8 +1,10 @@
 const express = require('express');
-
+const fs = require('fs');
+const path = require('path');
 const app = express();
 
-const cats = [];
+const { catMiddleware } = require('./middlewares');
+app.use('/public', express.static('public'));
 
 
 //Action
@@ -11,9 +13,15 @@ app.get('/', (req, res) => {
     // res.end();
     res.send('Hello world! from express.');
 });
-app.get('/cats', (req, res) => {
-    if (cats.length > 0) {
-        res.send(cats.join(', '));
+
+// app.get('/img/:imgName', (req, res) => {
+//     res.sendFile(path.resolve('./public/img', req.params.imgName));
+// });
+
+
+app.get('/cats', catMiddleware, (req, res) => {
+    if (req.cats.length > 0) {
+        res.send(req.cats.join(', '));
     } else {
         res.send('No cats here!');
     }
@@ -29,9 +37,9 @@ app.get('/cats/:catName', (req, res) => {
     // res.send()
 });
 
-app.post('/cats/:catName', (req, res) => {
+app.post('/cats/:catName', catMiddleware, (req, res) => {
     //TODO: implement posting cat
-    cats.push(req.params.catName);
+    req.cats.push(req.params.catName);
 
     res.send(`Add ${req.params.catName} to the collection`);
     console.log(cats);
