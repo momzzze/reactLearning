@@ -1,17 +1,37 @@
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
+
+const handlebars = require('express-handlebars');
+const { catMiddleware } = require('./middlewares');
+
+const users = [
+    { name: 'Pesho', age: 20 },
+    { name: 'Gosho', age: 25 },
+    { name: 'Miro', age: 30 },
+];
+
 const app = express();
 
-const { catMiddleware } = require('./middlewares');
+app.engine('hbs', handlebars.engine({
+    extname: 'hbs'
+}));
+app.set('view engine', 'hbs');
+
+
 app.use('/public', express.static('public'));
 
 
 //Action
-app.get('/', (req, res) => {
+app.get('/:name?', (req, res) => {
     // res.write("Hello from js.");
     // res.end();
-    res.send('Hello world! from express.');
+    // res.send('Hello world! from express.');
+    res.render('home', {
+        name: req.params.name || 'Guest',
+        users,
+        isAuth: true,
+    });
 });
 
 // app.get('/img/:imgName', (req, res) => {
