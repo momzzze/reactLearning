@@ -1,5 +1,8 @@
+const cubes = require('../db.json');
+
+
 exports.index = (req, res) => {
-    res.render('./');
+    res.render('index', { cubes });
 };
 
 exports.about = (req, res) => {
