@@ -20,11 +20,8 @@ const cubeSchema = new mongoose.Schema({
         required: true,
         min: 1,
         max: 6
-    },
-    accessories: {
-        type: Object
-    }
-})
+    }    
+});
 
 cubeSchema.path('imageUrl').validate(function () {
     return this.imageUrl.startsWith('http');

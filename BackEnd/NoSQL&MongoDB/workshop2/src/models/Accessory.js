@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const accessorySchema = new mongoose.Schema({
-    _id: mongoose.Types.ObjectId,
     name: {
         type: String,
         required: true,
@@ -9,21 +8,24 @@ const accessorySchema = new mongoose.Schema({
     imageUrl: {
         type: String,
         required: true,
-
+        validate: {
+            // validator: /^https?/g,
+            validator: function () {
+                return this.imageUrl.startsWith('http');
+            },
+            message: 'Image url should be a link with http/s'
+        }
     },
     description: {
         type: String,
         required: true,
         maxlength: 200
-    },
-    cubes: {
-        type: Object,
     }
-})
+});
 
-accessorySchema.path('imageUrl').validate(function () {
-    return this.name.startsWith('http');
-}, 'Image Url should be a link');
+// accessorySchema.path('imageUrl').validate(function () {
+//     return this.name.startsWith('http');
+// }, 'Image Url should be a link');
 
 const Accessory = mongoose.model('Accessory', accessorySchema);
 module.exports = Accessory;
