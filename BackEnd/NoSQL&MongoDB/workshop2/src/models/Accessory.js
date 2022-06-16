@@ -20,7 +20,11 @@ const accessorySchema = new mongoose.Schema({
         type: String,
         required: true,
         maxlength: 200
-    }
+    },
+    cubes: [{
+        type: mongoose.Types.ObjectId,
+        ref: 'Cube'
+    }]
 });
 
 // accessorySchema.path('imageUrl').validate(function () {
