@@ -1,80 +1,46 @@
-"use strict";
+'use strict';
 
-console.log('App.js is running.');
-
-var appObject = {
-    title: "Indecision App.",
-    subtitle: "This is some info",
-    options: ['One', 'Two']
-    //JSX-      JS XML 
-};var template = React.createElement(
-    "div",
-    null,
-    React.createElement(
-        "h1",
-        null,
-        appObject.title
-    ),
-    React.createElement(
-        "p",
-        null,
-        appObject.subtitle && appObject.subtitle
-    ),
-    React.createElement("p", null),
-    React.createElement(
-        "ol",
-        null,
-        React.createElement(
-            "li",
-            null,
-            "Item One"
-        ),
-        React.createElement(
-            "li",
-            null,
-            "Item Two"
-        )
-    )
-);
-
-function avalableOptions(options) {}
+// argument object= no longer bound with arrow function
+var add = function add(a, b) {
+    return a + b;
+};
+console.log(add(55, 1, 1001));
+// this keyword no longer bound with arrow func
 
 var user = {
-    userName: "Nikola Ninov",
-    age: 29,
-    userLocation: "Panaguyrishte,Bul"
-    // var userName = "Nikola Ninov";
-    // var age = 29;
-    // var userLocation = "Panaguyrishte,Bul";
+    name: 'Andrew',
+    cities: ['Phily', 'New York', 'Dublin'],
+    printPlacesLived: function printPlacesLived() {
+        var _this = this;
 
-};function getLocation(location) {
-    if (location) {
-        return React.createElement(
-            "p",
-            null,
-            "Location: ",
-            location
-        );
+        return this.cities.map(function (city) {
+            return _this.name + ' has lived in ' + city;
+        });
+        return cityMessages;
+        // console.log(this.name);
+        // console.log(this.cities);
+
+        // this.cities.forEach((city) => {
+        //     console.log(this.name + ' has lived in ' + city);
+        // });
     }
-}
+};
+console.log(user.printPlacesLived());
+//Chalenge
 
-var templateTwo = React.createElement(
-    "div",
-    null,
-    React.createElement(
-        "h1",
-        null,
-        user.userName ? user.userName : 'Anonymous'
-    ),
-    user.age && user.age >= 18 && React.createElement(
-        "p",
-        null,
-        "Age: ",
-        user.age
-    ),
-    getLocation(user.userLocation)
-);
+var multiplier = {
+    //numbers-array
+    numbersArr: [1, 5, 6],
+    //multiplyBy-number
+    multiplyBy: 2,
+    //multiply return arr with numbers were the number have been multiplied
+    multiply: function multiply() {
+        var _this2 = this;
 
-var appRoot = document.getElementById('app');
+        return this.numbersArr.map(function (number) {
+            return _this2.multiplyBy * number;
+        });
+    }
+};
 
-ReactDOM.render(template, appRoot);
+console.log(multiplier.multiply());

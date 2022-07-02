@@ -1,28 +1,28 @@
 console.log('App.js is running.')
 
-var appObject = {
+const appObject = {
     title: "Indecision App.",
     subtitle: "This is some info",
     options: ['One', 'Two']
 }
 //JSX-      JS XML 
-var template = (
+const template = (
     <div>
         <h1>{appObject.title}</h1>
         <p>{appObject.subtitle && appObject.subtitle}</p>
-        <p></p>
+        <p>{appObject.options.length > 0 ? "Here are your options" : "No options"}</p>
         <ol>
             <li>Item One</li>
             <li>Item Two</li>
         </ol>
     </div>);
 
-function avalableOptions(options){
+function avalableOptions(options) {
 
 }
 
 
-var user = {
+const user = {
     userName: "Nikola Ninov",
     age: 29,
     userLocation: "Panaguyrishte,Bul",
@@ -38,7 +38,7 @@ function getLocation(location) {
 }
 
 
-var templateTwo = (
+const templateTwo = (
     <div>
         <h1>{user.userName ? user.userName : 'Anonymous'}</h1>
         {/* <p>Age: {user.age}</p> */}
@@ -48,6 +48,6 @@ var templateTwo = (
     </div>
 )
 
-var appRoot = document.getElementById('app');
+const appRoot = document.getElementById('app');
 
 ReactDOM.render(template, appRoot);
