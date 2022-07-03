@@ -69,6 +69,7 @@ const render = () => {
             {visibility && <p>Hey. These are some details you can now see</p>}
         </div>
     );
+    
     ReactDOM.render(jsx, document.getElementById('app'));
 }
 
