@@ -6,6 +6,7 @@ import './App.css';
 import { Timer } from './components/Timer';
 import { Clicker } from './components/Clicker';
 import { Counter } from './components/Counter';
+import { CharacterList } from './components/CharacterList';
 
 function App() {
     const books = [
@@ -104,15 +105,8 @@ function App() {
     return (
         <div className="App">
             <header className="App-header">
-                <Header title='Library'>
-                    <span className='fancy-font'></span>
-                </Header>
-                <img src={logo} className="App-logo" alt="logo" />
-                <Counter />
-                <Clicker />
-                <Timer />
+                <CharacterList />
                 <BookList books={books} />
-
             </header>
         </div>
     );
