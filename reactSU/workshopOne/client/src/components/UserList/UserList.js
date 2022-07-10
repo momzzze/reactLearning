@@ -39,12 +39,33 @@ export const UserList = () => {
         }
         userService.create(userData)
             .then(user => {
-                setUsers(state => [...state, user])
-                detailsCloseHandler()
+                setUsers(state => [...state, user]);
+                detailsCloseHandler();
             })
     }
+    const userEditHandler = (e) => {
+        e.preventDefault();
 
-
+        const formData = new FormData(e.target);
+        const {
+            firstName, lastName, imageUrl, email, phoneNumber, ...address
+        } = Object.fromEntries(formData);
+        const userData = {
+            firstName, lastName, imageUrl, email, phoneNumber, address
+        }
+        userService.edit(userData, userAction.user._id)
+            .then(user => {                
+                setUsers(state => [...state,user]);
+                detailsCloseHandler();
+            });
+    }
+    const deleteUserHandler = () => {
+        userService.Delete(userAction.user._id)
+            .then(() => {
+                setUsers(state => [...state]);
+                detailsCloseHandler();
+            })
+    }
     const detailsCloseHandler = () => {
         setUserAction({ user: null, action: null });
     }
@@ -54,15 +75,15 @@ export const UserList = () => {
                 {/* overlap components */}
                 {/* <UserDetails /> */}
 
-                {userAction.action == userActions.Details && <UserDetails user={userAction.user} onClose={detailsCloseHandler} />}
+                {userAction.action === userActions.Details && <UserDetails user={userAction.user} onClose={detailsCloseHandler} />}
 
-                {userAction.action == userActions.Edit && <UserEdit user={userAction.user}
+                {userAction.action === userActions.Edit && <UserEdit onUserEdit={userEditHandler} user={userAction.user}
                     onClose={detailsCloseHandler} />}
 
-                {userAction.action == userActions.Delete && <UserDelete user={userAction.user}
+                {userAction.action === userActions.Delete && <UserDelete deleteUser={deleteUserHandler} user={userAction.user}
                     onClose={detailsCloseHandler} />}
 
-                {userAction.action == userActions.Add && <UserCreate onUserCreate={userCreateHandler} onClose={detailsCloseHandler} />}
+                {userAction.action === userActions.Add && <UserCreate onUserCreate={userCreateHandler} onClose={detailsCloseHandler} />}
 
                 <table className="table">
                     <thead>

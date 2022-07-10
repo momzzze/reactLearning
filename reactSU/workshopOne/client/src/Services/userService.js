@@ -25,14 +25,28 @@ export const create = async (userData) => {
         body: JSON.stringify(userData)
     });
     const result = await response.json();
-
+    console.log(result.user);
     return result.user;
 }
 
-export const edit = async () => {
-
+export const edit = async (userData,id) => {
+    const response = await fetch(`${baseUrl}/${id}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(userData)
+    });
+    const result = await response.json();
+    console.log(result.user);
+    return result.user;
 }
 
-export const Delete = async () => {
-
+export const Delete = async (id) => {
+    const response = await fetch(`${baseUrl}/${id}`,{
+        method: 'DELETE',
+        headers: {
+            'content-type': 'application/json'
+        },
+    })
 }

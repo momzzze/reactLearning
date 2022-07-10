@@ -6,7 +6,7 @@ export const UserCreate = ({
 
     return (
         <div className="overlay">
-            <div className="backdrop" onClick={onClose}></div>
+            <div className="backdrop" onClick={onClose}/>
             <div className="modal">
                 <div className="user-container">
                     <header className="headers">
