@@ -23,13 +23,20 @@ export const create = async (userData) => {
             'content-type': 'application/json'
         },
         body: JSON.stringify(userData)
+    }).catch(err => {
+        console.log(err);
     });
-    const result = await response.json();
-    console.log(result.user);
-    return result.user;
+    if (response.ok) {
+        const result = await response.json();
+        console.log(result.user);
+        return result.user;
+    } else {
+        throw { message: 'Unable to create user' }
+    }
+
 }
 
-export const edit = async (userData,id) => {
+export const edit = async (userData, id) => {
     const response = await fetch(`${baseUrl}/${id}`, {
         method: 'PUT',
         headers: {
@@ -43,7 +50,7 @@ export const edit = async (userData,id) => {
 }
 
 export const Delete = async (id) => {
-    const response = await fetch(`${baseUrl}/${id}`,{
+    const response = await fetch(`${baseUrl}/${id}`, {
         method: 'DELETE',
         headers: {
             'content-type': 'application/json'

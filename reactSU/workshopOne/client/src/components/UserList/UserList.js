@@ -18,6 +18,7 @@ export const UserList = () => {
     }, []);
 
     const userActionClickHandler = (userId, actionType) => {
+
         userService.getOneById(userId)
             .then(user => {
                 setUserAction({
@@ -27,19 +28,18 @@ export const UserList = () => {
 
             })
     }
-    const userCreateHandler = (e) => {
-        e.preventDefault();
 
-        const formData = new FormData(e.target);
-        const {
-            firstName, lastName, imageUrl, email, phoneNumber, ...address
-        } = Object.fromEntries(formData);
-        const userData = {
-            firstName, lastName, imageUrl, email, phoneNumber, address
-        }
+    const createUserOpenHandler = () => {
+        setUserAction({
+            action: userActions.Add
+        })
+    }
+
+    const userCreateHandler = (userData) => {
+
         userService.create(userData)
             .then(user => {
-                setUsers(state => [...state, user]);
+                setUsers(oldUsers => [...oldUsers, user]);
                 detailsCloseHandler();
             })
     }
@@ -54,8 +54,8 @@ export const UserList = () => {
             firstName, lastName, imageUrl, email, phoneNumber, address
         }
         userService.edit(userData, userAction.user._id)
-            .then(user => {                
-                setUsers(state => [...state,user]);
+            .then(user => {
+                setUsers(state => [...state, user]);
                 detailsCloseHandler();
             });
     }
@@ -151,7 +151,7 @@ export const UserList = () => {
                     </tbody>
                 </table>
             </div>
-            <button className="btn-add btn" onClick={() => userActionClickHandler(null, 'add')}>Add new user</button>
+            <button className="btn-add btn" onClick={createUserOpenHandler}>Add new user</button>
         </>
     );
 };
