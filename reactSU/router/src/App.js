@@ -6,7 +6,8 @@ import { Footer } from './components/Footer';
 import { Header } from './components/Header';
 import { Home } from './components/Home';
 import { Pricing } from './components/Pricing';
-import { Products } from './components/Products';
+import { StarshipList } from './components/StarshipList';
+import { Starships } from './components/Starships';
 
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/pricing' element={<Pricing />} />
-          <Route path='/products/:productId' element={<Products />} />
+          <Route path='/starships' element={<StarshipList />} />
+          <Route path='/starships/:productId/*' element={<Starships />} />
           <Route path='/millennium-falcon' element={<Navigate to="/products/10" replace />} />
           <Route path='/contacts' element={<Contacts />} />
         </Routes>

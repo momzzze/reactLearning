@@ -1,5 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
-import  styles  from './Navigation.module.css';
+import styles from './Navigation.module.css';
 
 
 export const Header = () => {
@@ -15,10 +15,10 @@ export const Header = () => {
                 <li><NavLink className={setNavStyle} to="/about">About</NavLink></li>
                 <li><NavLink className={setNavStyle} to="/pricing">Pricing</NavLink></li>
                 <li><NavLink className={setNavStyle} to="/contacts">Contacts</NavLink></li>
-
+                <li><NavLink className={setNavStyle} to="/starships">Starships</NavLink></li>
                 <li>
                     <NavLink
-                        to="/products/2"
+                        to="/starships/2"
                         // style={({isActive}) => {
                         //     return isActive
                         //         ? { backgroundColor: 'lightblue' }
@@ -26,7 +26,7 @@ export const Header = () => {
                         // }}
                         className={setNavStyle}
                     >
-                        Products
+                        Starships
                     </NavLink>
                 </li>
 
