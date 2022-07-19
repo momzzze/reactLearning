@@ -2,16 +2,9 @@ import { useEffect, useState } from 'react';
 import * as gameService from '../../services/gameService';
 import { LatestGame } from './LatestGame/LatestGame';
 
-export const Home = () => {
+export const Home = ({games}) => {
 
-    const [games, setGames] = useState([]);
-
-    useEffect(() => {
-        gameService.getAll()
-            .then(result => {
-                setGames(result);
-            })
-    }, []);
+   
 
 
 
