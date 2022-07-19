@@ -17,6 +17,10 @@ function App() {
       <main id="main-content">
         <Routes>
           <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/catalogue' element={<Catalogue />} />
+          <Route path='/create' element={<Create />} />
         </Routes>
         {/*Home Page*/}
       </main>
