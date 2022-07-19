@@ -1,5 +1,7 @@
 
-export const Create = () => {
+export const Create = ({
+  addGameHandler
+}) => {
 
   const createHandler = (e) => {
     e.preventDefault();
@@ -7,7 +9,7 @@ export const Create = () => {
     const gameData = Object.fromEntries(new FormData(e.target))
     console.log(gameData);
 
-
+    addGameHandler(gameData);
   }
 
   return (
