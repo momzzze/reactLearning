@@ -10,6 +10,12 @@ export const Details = ({ games, addComment }) => {
 
     const game = games.find(x => x._id == gameId);
 
+    const validateUsername = (e) => {
+        const value = e.target.value;
+        if (value.length < 4) {
+            
+        }
+    }
 
     const addCommentHandler = (e) => {
         e.preventDefault();
@@ -69,6 +75,7 @@ export const Details = ({ games, addComment }) => {
                         type="text"
                         name='username'
                         placeholder='John Doe'
+                        onBlur={validateUsername}
                         onChange={onChange}
                         value={comment.username}
                     />
