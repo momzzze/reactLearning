@@ -2,12 +2,9 @@ import { useEffect, useState } from 'react';
 import * as gameService from '../../services/gameService';
 import { LatestGame } from './LatestGame/LatestGame';
 
-export const Home = ({games}) => {
+export const Home = ({games}) => {   
 
-   
-
-
-
+    
     return (
         <section id="welcome-world">
             <div className="welcome-message">

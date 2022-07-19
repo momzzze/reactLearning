@@ -1,6 +1,8 @@
 import { CatalogItem } from "./CatalogItem/CatalogItem"
 
-export const Catalogue = ({ games }) => {
+export const Catalogue = ({
+    games
+}) => {
 
     return (
         <section id="catalog-page">
@@ -9,7 +11,6 @@ export const Catalogue = ({ games }) => {
                 ? games.map(x => <CatalogItem key={x._id} game={x} />)
                 : <h3 className="no-articles">No articles yet</h3>
             }
-
         </section>
     )
 }

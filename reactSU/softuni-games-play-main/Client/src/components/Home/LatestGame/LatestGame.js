@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 
 export const LatestGame = ({
     game
@@ -17,9 +18,9 @@ export const LatestGame = ({
                 <span>☆</span>
             </div>
             <div className="data-buttons">
-                <a href="#" className="btn details-btn">
+                <Link to={`/catalogue/${game._id}`} className="btn details-btn">
                     Details
-                </a>
+                </Link>
             </div>
         </div>
     )

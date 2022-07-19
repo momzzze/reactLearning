@@ -47,20 +47,8 @@ function App() {
           <Route path='/create' element={<Create />} />
           <Route path='/catalogue/:gameId' element={<Details games={games} addComment={addComment} />} />
         </Routes>
-        {/*Home Page*/}
       </main>
-      {/* Login Page ( Only for Guest users ) */}
-      {/* <Login /> */}
-      {/* Register Page ( Only for Guest users ) */}
-      {/* <Register /> */}
-      {/* Create Page ( Only for logged-in users ) */}
-      {/* <Create /> */}
-      {/* Edit Page ( Only for the creator )*/}
-      {/* <Edit /> */}
-      {/*Details Page*/}
-      {/* <Details /> */}
-      {/* Catalogue */}
-      {/* <Catalogue /> */}
+
     </div>
   );
 }
