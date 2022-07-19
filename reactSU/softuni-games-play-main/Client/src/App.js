@@ -5,6 +5,7 @@ import { Catalogue } from './components/Catalogue/Catalogue';
 import { Create } from './components/Create/Create';
 import { Details } from './components/Details/Details';
 import { Edit } from './components/Edit/Edit';
+import { Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header/Header';
 import { Home } from './components/Home/Home';
 
@@ -14,8 +15,10 @@ function App() {
       <Header />
       {/* Main Content */}
       <main id="main-content">
+        <Routes>
+          <Route path='/' element={<Home />} />
+        </Routes>
         {/*Home Page*/}
-        <Home />
       </main>
       {/* Login Page ( Only for Guest users ) */}
       {/* <Login /> */}
