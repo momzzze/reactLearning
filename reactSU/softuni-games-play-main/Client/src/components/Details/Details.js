@@ -7,14 +7,28 @@ export const Details = ({ games, addComment }) => {
         username: '',
         comment: '',
     });
+    const [error, setError] = useState({
+        username: '',
+        comment: '',
+    });
 
     const game = games.find(x => x._id == gameId);
 
     const validateUsername = (e) => {
-        const value = e.target.value;
-        if (value.length < 4) {
-            
+        const username = e.target.value;
+        let errorMessage = ``;
+        if (username.length < 4) {
+            errorMessage = `Username must be longer than 4 chars`;
+        } else if (username.length > 14) {
+            errorMessage = `Username must be shorter  than 14 chars`;
         }
+
+
+        setError(state => ({
+            ...state,
+            username: errorMessage,
+        }))
+
     }
 
     const addCommentHandler = (e) => {
@@ -79,6 +93,10 @@ export const Details = ({ games, addComment }) => {
                         onChange={onChange}
                         value={comment.username}
                     />
+                    {error.username &&
+                        <div style={{ color: 'red' }}>{error.username}</div>
+                    }
+
                     <textarea
                         name="comment"
                         placeholder="Comment......"
