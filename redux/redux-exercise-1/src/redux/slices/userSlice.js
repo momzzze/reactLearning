@@ -1,26 +1,37 @@
 
 
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { db } from '../../config/firebase';
+import { collection, getDocs } from 'firebase/firestore';
 
 const initialState = {
-    users: []
+    users: [],
+    status: 'idle',
 }
+
+export const fetchUsersFromFirebase = createAsyncThunk('users/fetchUsersFromFirebase', async () => {
+    const usersRef = collection(db, 'users');
+    const snapshot = await getDocs(usersRef)
+    return snapshot.docs.map(doc => doc.data());
+})
+
 
 const userSlice = createSlice({
     name: 'users',
     initialState,
-    reducers: {
-        addUser: (state, action) => {
-            const newUser = action.payload;
-            const existingUser = state.users.find(user => user.id === newUser.id)
-            if (!existingUser) {
-                state.users.push(newUser)
-            }
-            
-        }
+    reducers: {},
+    extraReducers: (builder) => {
+        builder.addCase(fetchUsersFromFirebase.fulfilled, (state, action) => {
+            state.status = 'succeeded';
+            const loadedUsers = action.payload;
+            loadedUsers.map(user => {
+                state.users.push(user)
+            })
+        })
     }
 });
 
 export const userActions = userSlice.actions
+export const selectAllUsers = (state) => state.users;
 
 export default userSlice.reducer
