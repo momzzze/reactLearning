@@ -25,9 +25,12 @@ describe("Application", () => {
 
     const nameElement2=screen.getByLabelText('Name',{
         selector: 'input',
-        
+
     });
     expect(nameElement2).toBeInTheDocument();
+
+    const nameElement3=screen.getByPlaceholderText('Fullname');
+    expect(nameElement3).toBeInTheDocument();
 
     // const nameElement3=screen.getByLabelText('I agree to the terms and conditions');
     // expect(nameElement3).toBeInTheDocument();
