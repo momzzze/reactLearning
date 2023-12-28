@@ -1,0 +1,25 @@
+{
+  "name": "ex-1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {
+    "typescript": "^3.8.3",
+    "@types/node": "^12.0.4",
+    "ts-node": "^8.2.0",
+    "cpx": "^1.5.0",
+    "@types/cpx": "^1.5.0",
+    "rimraf": "^2.6.3",
+    "tslint": "^5.17.0"
+  },
+  "scripts": {
+    "start": "ts-node --project ./tsconfig.json ./src/main.ts",
+    "start:safe": "npm run lint && ts-node --project ./tsconfig.json ./src/main.ts",
+    "lint": "tslint --format stylish -p .",
+    "clean": "rimraf ./dist",
+    "build": "npm run clean & tsc --project .",
+    "build-w": "npm run clean & tsc --project . -w"
+  },
+  "author": "Telerik Academy",
+  "license": "MIT"
+}

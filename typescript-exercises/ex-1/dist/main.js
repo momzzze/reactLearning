@@ -1,0 +1,13 @@
+"use strict";
+// import { a } from "./module";
+// const text: string = 'Telerik Academy';
+// console.log(text, a);
+// import { a } from "./module";
+// console.log('Telerik Academy');
+// console.log(a);
+const add = (a, b) => a + b;
+let res = add(1, 2);
+res = 'telerik academy';
+console.log(res);
+let num = 42;
+num = res;
