@@ -2,7 +2,6 @@ import { DollarSign, Pin, Users } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { Card, CardContent } from '@/components/ui';
-import { getImageUrl } from '@/lib/utils/images';
 
 import ListingCardImages from './ListingCardImages';
 

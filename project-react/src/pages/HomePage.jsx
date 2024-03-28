@@ -1,52 +1,42 @@
-import axios from "axios";
-import { useEffect, useRef,useState } from "react";
+import { useCallback, useMemo, useState } from 'react';
 
-import api from "@/api";
-import ListingFilters from "@/components/ListingFilters";
-import ListingList from "@/components/ListingList";
-import { Separator, Spinner } from "@/components/ui";
-import useFetch from "@/hooks/useFetch";
+import DataRenderer from '@/components/DataRenderer';
+import ListingFilters from '@/components/ListingFilters';
+import ListingList from '@/components/ListingList';
+import { Separator, Spinner } from '@/components/ui';
+import useFetch from '@/hooks/useFetch';
 
-const HomePage = () => {  
+const HomePage = () => {
   const [filters, setFilters] = useState({
-    dates:undefined,
-    guests:0,
-    search:''
+    dates: undefined,
+    guests: 0,
+    search: '',
   });
+  const fetchOptions = useMemo(() => ({ params: filters }), [filters]);
+
   const {
-    data:listings,
+    data: listings,
     error,
-    isLoading
-  }=useFetch('/api/listings',{params:filters});
+    isLoading,
+  } = useFetch('/api/listings', fetchOptions);
+
+  const handleFilters = useCallback((filters) => {
+    setFilters(filters);
+  }, []);
+
   
 
-  const handleFilters = (filters) => {
-    setFilters(filters);
-  }
-  const renderListingList = () => {
-    if (isLoading) {
-      return (
-        <div className="flex justify-center">
-          <Spinner size='sm' />
-        </div>
-      )
-    }
-    if (error) {
-      return <p className='text-red-500 text-center'>{error}</p>
-    }
-
-
-    return <ListingList listings={listings} />
-  }
   return (
-    <div className="container py-4">
-      <div className="container py-4">
+    <div className='container py-4'>
+      <div className='mb-4'>
         <ListingFilters onChange={handleFilters} />
-        <Separator className="my-4" />
+        <Separator className='my-4' />
       </div>
-      {renderListingList()}
+      <DataRenderer error={error} isLoading={isLoading}>
+          <ListingList listings={listings} />
+      </DataRenderer>
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
