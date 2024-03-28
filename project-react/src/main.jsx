@@ -4,6 +4,7 @@ import { seedLocalDatabase } from '@/api/data/seed';
 import ThemeProvider from '@/components/ThemeProvider';
 
 import App from './App';
+import Router from './Router';
 
 import './index.css';
 
@@ -12,6 +13,6 @@ seedLocalDatabase();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <ThemeProvider>
-    <App />
+    <Router />
   </ThemeProvider>,
 );
