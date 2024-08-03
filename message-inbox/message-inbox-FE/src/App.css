@@ -1,0 +1,59 @@
+/* App.css */
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.top-nav-wrapper {
+  width: 100%;
+
+  padding: 10px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  height: 60px;
+}
+
+.layout {
+  margin-left: 100px;
+  width: 80%;
+  margin-right: auto;
+  display: flex;
+  margin-top: 120px; /* Height of the top nav */
+}
+
+.sidebar {
+  width: 250px;
+  position: fixed;
+  top: 60px; /* Adjust to account for the top nav height */
+  left: 0;
+  height: calc(100vh - 60px); /* Full height minus top nav */
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+.main-content {
+  margin-left: 250px; /* Width of the sidebar */
+  padding: 20px;
+
+  flex: 1;
+}
+
+.deleteButton {
+  background-color: #0056b3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  font-weight: 600;
+  font-size: large;
+  border-radius: 10px;
+}
+.deleteButton:hover {
+  background-color: #0f7ff0;
+}

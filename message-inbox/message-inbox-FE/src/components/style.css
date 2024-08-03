@@ -1,0 +1,242 @@
+/* General styles for containers */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Styling for the form */
+.send-message-form {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1em;
+  border-radius: 5px;
+}
+
+.send-message-form h2 {
+  margin-bottom: 1em;
+  text-align: center;
+}
+.btn-form {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.form-group {
+  margin-bottom: 1em;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  background-color: #025fd9;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.btn:hover {
+  background-color: #214c88;
+}
+
+/* Styling for message containers */
+.message-container {
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.message-container:hover {
+  background-color: #f0f0f0;
+}
+
+.message-title {
+  font-size: 1.5em;
+  margin: 0;
+}
+
+.message-date {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.message-content {
+  font-size: 1em;
+  color: #333;
+}
+
+.message-replies {
+  margin-top: 20px;
+  border-left: 2px solid #ddd;
+  padding-left: 10px;
+}
+
+/* Styling for message details */
+.message-detail-container {
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #fff;
+  margin: 20px auto;
+  max-width: 600px;
+  position: relative;
+}
+
+.message-detail-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.message-detail-title {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.message-detail-date {
+  font-size: 1.1em;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.message-detail-content {
+  font-size: 1.2em;
+  color: #333;
+}
+
+.message-reply {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  max-width: 60%;
+  clear: both;
+}
+
+.message-reply.user {
+  background-color: #1ad5ff;
+  border: 1px solid #000d61;
+  margin-left: auto;
+  text-align: right;
+}
+
+.message-reply.support {
+  background-color: #3e8eff;
+  border: 1px solid #80ceff;
+  margin-right: auto;
+  text-align: left;
+}
+
+/* Styling for buttons */
+.back-button,
+.reply-button,
+.send-reply-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.back-button:hover,
+.reply-button:hover,
+.send-reply-button:hover {
+  background-color: #0056b3;
+}
+
+/* .reply-button {
+  background-color: #28a745;
+} */
+
+.reply-button:hover {
+  background-color: #154479;
+}
+
+/* Styling for the reply form */
+.reply-form {
+  margin-top: 20px;
+}
+
+.reply-title-input,
+.reply-textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  font-size: 1em;
+}
+
+.reply-textarea {
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.send-reply-button {
+  background-color: #43a4ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+.send-reply-button:hover {
+  background-color: #218838;
+}
+
+/* Additional styling for delete button */
+.delete-button {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+/* Header styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.header h2 {
+  margin: 0;
+}
+
+.header button {
+  margin-left: 10px;
+}

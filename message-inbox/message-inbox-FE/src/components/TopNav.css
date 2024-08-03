@@ -1,0 +1,72 @@
+/* TopNav.css */
+.top-nav-wrapper {
+  width: 100%;
+  background-color: #ffffff; /* Background color of the top nav */
+  color: #333; /* Default text color */
+  padding: 10px 20px; /* Padding for the top nav */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  height: 60px; /* Height of the top nav */
+  border-bottom: 1px solid #ddd; /* Light border for separation */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.top-nav {
+  display: flex;
+  justify-content: space-between; /* Space out left and right sections */
+  align-items: center; /* Center items vertically */
+  max-width: 1200px; /* Max width to center the content */
+  margin: 0 auto;
+  height: 100%;
+}
+
+.logo-icon {
+  height: 40px; /* Size of the logo */
+  width: auto; /* Maintain aspect ratio */
+}
+
+.bell-icon {
+  height: 24px; /* Size of the bell icon */
+  width: 24px; /* Ensure square dimensions */
+}
+
+.top-nav-left {
+  display: flex;
+  align-items: center; /* Center items vertically */
+}
+
+.top-nav-right {
+  display: flex;
+  align-items: center; /* Center items vertically */
+}
+
+.nav-link {
+  color: #007bff; /* Link color */
+  margin-left: 20px; /* Space between links */
+  text-decoration: none; /* Remove underline from links */
+  font-size: 16px; /* Font size for links */
+  font-weight: 500; /* Slightly bold text */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+.nav-link:hover {
+  color: #0056b3; /* Color on hover */
+}
+
+.nav-button {
+  background: none; /* Remove default button styling */
+  border: none; /* Remove default border */
+  color: #00244b; /* Button text color */
+  margin-left: 20px; /* Space between button and links */
+  cursor: pointer; /* Change cursor to pointer */
+  font-size: 16px; /* Font size for button */
+  font-weight: 500; /* Slightly bold text */
+  transition: color 0.3s; /* Smooth color transition */
+}
+
+.nav-button:hover {
+  color: #0056b3; /* Color on hover */
+  text-decoration: underline; /* Add underline on hover */
+}
