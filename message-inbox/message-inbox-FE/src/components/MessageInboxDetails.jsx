@@ -16,7 +16,7 @@ const MessageInboxDetails = ({ message, onReplySubmit, onBack, replyContent, set
 
     // Function to sort messages by creation date
     const sortRepliesByDate = (replies) => {
-        return replies.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+        return replies.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     };
 
     // Recursive function to render replies and their replies

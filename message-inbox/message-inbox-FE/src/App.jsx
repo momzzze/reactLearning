@@ -15,6 +15,7 @@ import { useAuth } from './context/UserContext';
 const App = () => {
   const { user, logout } = useAuth();
 
+
   return (
     <div className="App">
       <TopNav user={user} logout={logout} />

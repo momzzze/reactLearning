@@ -1,5 +1,5 @@
 const Message = require("../../models/Message");
-
+const socket = require('../../index.js');
 const sendMessage = async (req, res) => {
     const {
         receiverId,
@@ -174,10 +174,7 @@ const replyToMessage = async (req, res) => {
     } = req.body;
 
     try {
-        // Fetch the parent message
-        console.log('====================================');
-        console.log(req.body);
-        console.log('====================================');
+
         const parentMessage = await Message.findByPk(parentMessageId);
         if (!parentMessage) {
             return res.status(404).json({
@@ -195,6 +192,9 @@ const replyToMessage = async (req, res) => {
             senderId: senderType === 'support' ? null : req.user.id // If support, senderId can be null
         });
 
+        if (senderType === 'support') {
+            socket.emit(req.user.id, "notification", reply);
+        }
         res.status(201).json(reply);
     } catch (error) {
         res.status(500).json({

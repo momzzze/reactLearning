@@ -1,72 +1,117 @@
 /* TopNav.css */
 .top-nav-wrapper {
   width: 100%;
-  background-color: #ffffff; /* Background color of the top nav */
-  color: #333; /* Default text color */
-  padding: 10px 20px; /* Padding for the top nav */
+  background-color: #ffffff;
+  color: #333;
+  padding: 10px 20px;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 1000;
-  height: 60px; /* Height of the top nav */
-  border-bottom: 1px solid #ddd; /* Light border for separation */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  height: 60px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .top-nav {
   display: flex;
-  justify-content: space-between; /* Space out left and right sections */
-  align-items: center; /* Center items vertically */
-  max-width: 1200px; /* Max width to center the content */
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
   margin: 0 auto;
   height: 100%;
 }
 
 .logo-icon {
-  height: 40px; /* Size of the logo */
-  width: auto; /* Maintain aspect ratio */
+  height: 40px;
+  width: auto;
 }
 
 .bell-icon {
-  height: 24px; /* Size of the bell icon */
-  width: 24px; /* Ensure square dimensions */
+  height: 24px;
+  width: 24px;
+  vertical-align: middle;
 }
 
 .top-nav-left {
   display: flex;
-  align-items: center; /* Center items vertically */
+  align-items: center;
 }
 
 .top-nav-right {
   display: flex;
-  align-items: center; /* Center items vertically */
+  align-items: center;
+  position: relative; /* Needed for dropdown positioning */
 }
 
 .nav-link {
-  color: #007bff; /* Link color */
-  margin-left: 20px; /* Space between links */
-  text-decoration: none; /* Remove underline from links */
-  font-size: 16px; /* Font size for links */
-  font-weight: 500; /* Slightly bold text */
-  transition: color 0.3s; /* Smooth color transition */
+  color: #007bff;
+  margin-left: 20px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
 .nav-link:hover {
-  color: #0056b3; /* Color on hover */
+  color: #0056b3;
 }
 
 .nav-button {
-  background: none; /* Remove default button styling */
-  border: none; /* Remove default border */
-  color: #00244b; /* Button text color */
-  margin-left: 20px; /* Space between button and links */
-  cursor: pointer; /* Change cursor to pointer */
-  font-size: 16px; /* Font size for button */
-  font-weight: 500; /* Slightly bold text */
-  transition: color 0.3s; /* Smooth color transition */
+  background: none;
+  border: none;
+  color: #007bff;
+  margin-left: 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s;
+  position: relative; /* Needed for dropdown positioning */
 }
 
 .nav-button:hover {
-  color: #0056b3; /* Color on hover */
-  text-decoration: underline; /* Add underline on hover */
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+.notification-container {
+  position: relative;
+}
+
+.notification-count {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background: #ff0000;
+  color: #ffffff;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+}
+
+.notification-dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.notification-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.notification-item:last-child {
+  border-bottom: none;
+}
+
+.notification-item:hover {
+  background: #f0f0f0;
 }

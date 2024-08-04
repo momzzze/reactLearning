@@ -2,10 +2,21 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const http = require("http");
+const {
+    Server
+} = require('socket.io');
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const path = require("path");
 const db = require("./config/db");
+const router = require('./routes/index');
+const jwt = require('jsonwebtoken');
+const {
+    createSocketConnection,
+    createSocketEmit
+} = require("./socket");
+
+// Create an Express application
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -19,7 +30,6 @@ app.use(bodyParser.urlencoded({
 }));
 
 // Import and use routes
-const router = require('./routes/index');
 app.use(router);
 
 // Database authentication and sync
@@ -35,8 +45,10 @@ db.authenticate()
     .then(() => {
         console.log('Database & tables synchronized!');
 
-        // Start server after database sync
+        // Create HTTP server
         const server = http.createServer(app);
+
+        // Start the server after everything is set up
         server.listen(port, () => {
             console.log(`Server running on port ${port}`);
         });
@@ -44,3 +56,55 @@ db.authenticate()
     .catch((error) => {
         console.error('Error syncing database or starting server:', error);
     });
+const verifySocketToken = (token) => {
+    return new Promise((resolve, reject) => {
+        jwt.verify(token, process.env.SECRET_KEY, (err, decoded) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(decoded);
+        });
+    })
+};
+
+
+const verifySocketConnection = async (socket, next) => {
+    const token = socket.handshake.auth.token || socket.handshake.headers['authorization'];
+    console.log('Received token:', token); // Log the received token
+
+    if (!token) {
+        console.log('No token provided');
+        return next(new Error('Authentication error'));
+    }
+
+    try {
+        const decoded = await verifySocketToken(token);
+        console.log('Decoded token:', decoded);
+        console.log('====================================');
+        console.log('decoded', decoded);
+        console.log('===================================='); // Log the decoded token
+        socket.userId = decoded.id;
+        next();
+    } catch (err) {
+        console.log('Token verification error:', err); // Log the error
+        next(new Error('Authentication error'));
+    }
+}
+
+const io = new Server({
+    cors: {
+        origin: '*',
+        methods: '*',
+        credentials: true,
+    },
+});
+
+io.use(verifySocketConnection);
+
+const socketEmit = createSocketEmit(io);
+createSocketConnection(io, socketEmit);
+
+module.exports.emit = socketEmit;
+
+app.set("socket", io);
+io.listen(8001);
